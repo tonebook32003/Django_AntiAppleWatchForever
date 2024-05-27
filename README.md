@@ -4,7 +4,7 @@
 
 --> Clone the repository using the command below :
 ```bash
-[git clone https://github.com/sajib1066/django-ecommerce.git](https://github.com/tonebook32003/Django_AntiAppleWatchForever)
+git clone https://github.com/tonebook32003/Django_AntiAppleWatchForever
 
 ```
 
