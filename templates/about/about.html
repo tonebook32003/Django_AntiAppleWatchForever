@@ -18,11 +18,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center"
-                style="background-image: url({% static 'images/hublot_about.jpg' %});">
+                style="background-image: url({% static 'images/hublot_about.png' %});">
                 <a href="https://player.vimeo.com/video/884029559?autoplay=1"
                     class="icon popup-vimeo d-flex justify-content-center align-items-center">
                     <span class="icon-play"></span>
                 </a>
+
             </div>
 
             <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
@@ -44,7 +45,7 @@
                         thuật, kết hợp giữa kỹ thuật
                         chế tác đỉnh cao và thiết kế tinh xảo.
                     </p>
-                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                    <p><a href="{% url 'shop' %}" class="btn btn-primary">Shop now</a></p>
                 </div>
             </div>
         </div>

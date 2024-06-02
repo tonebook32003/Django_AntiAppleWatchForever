@@ -11593,6 +11593,7 @@ h5,
     background: transparent !important;
     z-index: 3;
     padding: 0;
+    height: 60px;
 }
 
 @media (max-width: 991.98px) {
@@ -11612,8 +11613,7 @@ h5,
 .ftco-navbar-light .navbar-brand {
     color: #000;
     font-family: Major Mono Display;
-    font-size: 25px;
-
+    font-size: 15px !important;
 }
 
 .ftco-navbar-light .navbar-brand:hover,
@@ -11635,10 +11635,10 @@ h5,
 
 .ftco-navbar-light .navbar-nav>.nav-item>.nav-link {
     font-size: 11px;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 1.3rem !important;
+    padding-bottom: 1.3rem !important;
+    padding-left: 15px;
+    padding-right: 15px;
     font-weight: 400;
     color: #000000;
     text-transform: uppercase;
@@ -11718,6 +11718,7 @@ h5,
 
 .ftco-navbar-light .navbar-nav>.nav-item.cta>a {
     color: #000000;
+    width: 80px;
 }
 
 @media (max-width: 767.98px) {
@@ -11773,12 +11774,14 @@ h5,
 
 .ftco-navbar-light.scrolled .nav-item.active>a {
     color: #000 !important;
+
 }
 
 .ftco-navbar-light.scrolled .nav-item.cta>a {
     color: #fff !important;
     background: #000;
     border: none !important;
+    width: 80px !important;
 }
 
 .ftco-navbar-light.scrolled .nav-item.cta>a span {

@@ -1,37 +1,39 @@
 {% extends 'base/base.html' %}
 {% load static %}
-
+{% load humanize %}
 {% block content %}
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
-        <div class="slider-item" style="background-image: url({% static 'images/watch_banner1.jpg' %});">
+
+        {% for banner in banner %}
+        <div class="slider-item" style="background-image: url({{ banner.photo.url }});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                     <div class="col-md-12 ftco-animate text-center">
-                        <h1 style="font-family: ANton; font-size: 55px;" class="mb-2">We selling 100% new watch &amp;
-                            Beautiful</h1>
-                        <h2 class="subheading mb-4">We deliver best watch on the world</h2>
+                        <h1 style="font-family: ANton; font-size: 55px;" class="mb-2">{{ banner.title }}</h1>
+                        <h2 style="color: #FFF;" class="subheading mb-4">{{ banner.description }}</h2>
                         <p><a href="#" class="btn btn-secondary">View Details</a></p>
                     </div>
                 </div>
             </div>
         </div>
+        {% endfor %}
 
-        <div class="slider-item" style="background-image: url({% static 'images/watch_banner2.jpg' %});">
+        <!-- <div class="slider-item" style="background-image: url({% static 'images/watch_banner2.jpg' %});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
 
                     <div class="col-sm-12 ftco-animate text-center">
                         <h1 style="font-family: ANton; font-size: 55px;" class="mb-2">100% New</h1>
-                        <h2 class="subheading mb-4">We deliver best watch on the world</h2>
-                        <p><a href="#" class="btn btn-secondary">View Details</a></p>
+                        <h2 style="color: #FFF;" class="subheading mb-4">We deliver best watch on the world</h2>
+                        <p><a href="{% url 'shop' %}" class="btn btn-secondary">View Details</a></p>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </section>
 
@@ -159,7 +161,9 @@
                         <h3><a href="{% url 'product-details' product.id %}">{{ product.name }}</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span class="price-sale">${{ product.price }}</span></p>
+                                <p class="price">
+                                    <span class="price-sale">{{ product.price|floatformat:"0"|intcomma }} VNĐ</span>
+                                </p>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">
@@ -187,12 +191,12 @@
         </div>
     </div>
 </section>
-
+<!-- images/hublot-banner-bestdeal.png -->
 <section class="ftco-section img" style="background-image: url({% static 'images/hublot-banner-bestdeal.png' %});">
     <div class="container">
         <div class="row justify-content-end">
             <div class="col-md-6 heading-section ftco-animate deal-of-the-day ftco-animate">
-                <span class="subheading">Best Price For You</span>
+                <span style="color: #FFF;" class="subheading">Best Price For You</span>
                 <h2 class="mb-4">Deal of the week</h2>
 
                 <h3>

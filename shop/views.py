@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from .models import Category, Product
 
-
 def shop_page(request):
     category = Category.objects.all()
     products = Product.objects.filter(is_draft=False)

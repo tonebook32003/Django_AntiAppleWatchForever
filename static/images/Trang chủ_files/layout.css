@@ -1,0 +1,92 @@
+.bg-light {
+    color: #fff !important;
+}
+
+.navbar-brand {
+    color: #000;
+    font-family: Major Mono Display;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto;
+}
+
+.form {
+    width: 1500px;
+    margin: 0 0 0 40px;
+    position: relative;
+}
+
+.form .fa-search {
+    position: absolute;
+    top: 11px;
+    left: 20px;
+    color: #000;
+}
+
+.form span {
+    position: absolute;
+    right: 17px;
+    top: 6px;
+    padding: 2px;
+    border-left: 1px solid #000;
+
+}
+
+.left-pan {
+    padding-left: 7px;
+}
+
+.left-pan i {
+    color: #000;
+    padding-left: 10px;
+}
+
+.form-input {
+    height: 40px;
+    text-indent: 33px;
+    border-radius: 10px;
+}
+
+.form-input:focus {
+
+    box-shadow: none;
+    border: none;
+}
+
+.student__information {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.centered-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+}
+
+.btn-link {
+    text-decoration: none;
+    color: #000;
+    font-weight: 600;
+}
+
+.btn-link:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.list-group .list-group-horizontal {
+    border: none;
+}
