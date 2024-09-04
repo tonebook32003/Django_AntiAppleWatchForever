@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
+    # "material.admin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +51,8 @@ INSTALLED_APPS = [
     "account",
     "Banner",
     "Customer",
+    "customadmin",
+    # "Partner",
     # 'signup'
 ]
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -146,4 +150,15 @@ CKEDITOR_CONFIGS = {
     "default": {
         "toolbar": None,
     },
+}
+
+JAZZMIN_SETTINGS = {
+    # "site_header": "Đến là đón đụng là bán đồng hồ",
+    "site_brand": "AAF",
+    "site_copyright": "github.com",
+    "sortable": {
+        "enabled": True,
+        "exclude": ["User", "Group"],  # Bảng bạn muốn loại trừ khỏi sorting custom
+    },
+    "theme": "light",
 }

@@ -4,39 +4,28 @@
 {% block content %}
 <section id="home-section" class="hero">
     <div class="home-slider owl-carousel">
-
-        {% for banner in banner %}
-        <div class="slider-item" style="background-image: url({{ banner.photo.url }});">
+        {% for banner in banners %}
+        <div class="slider-item" style="background-image: url({{ banner.image.url }});">
             <div class="overlay"></div>
             <div class="container">
                 <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
                     <div class="col-md-12 ftco-animate text-center">
-                        <h1 style="font-family: ANton; font-size: 55px;" class="mb-2">{{ banner.title }}</h1>
-                        <h2 style="color: #FFF;" class="subheading mb-4">{{ banner.description }}</h2>
-                        <p><a href="#" class="btn btn-secondary">View Details</a></p>
+                        <h1 style="font-family: ; font-size: 55px;" class="mb-2">
+                            {{ banner.title }}
+                        </h1>
+                        <h4 style="color: #FFF;" class="subheading mb-4">{{ banner.description }}</h4>
+                        <p><a href="{% url 'shop' %}" class="btn btn-secondary">View Details</a></p>
                     </div>
                 </div>
             </div>
         </div>
         {% endfor %}
-
-        <!-- <div class="slider-item" style="background-image: url({% static 'images/watch_banner2.jpg' %});">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row slider-text justify-content-center align-items-center" data-scrollax-parent="true">
-
-                    <div class="col-sm-12 ftco-animate text-center">
-                        <h1 style="font-family: ANton; font-size: 55px;" class="mb-2">100% New</h1>
-                        <h2 style="color: #FFF;" class="subheading mb-4">We deliver best watch on the world</h2>
-                        <p><a href="{% url 'shop' %}" class="btn btn-secondary">View Details</a></p>
-                    </div>
-
-                </div>
-            </div>
-        </div> -->
     </div>
 </section>
 
+<!-- <div>
+    <img class="img-fluid w-100" src="{{ banner.image.url }}" alt="" />
+</div> -->
 <section class="ftco-section">
     <div class="container">
         <div style="justify-content: center;" class="row no-gutters ftco-services">
@@ -87,17 +76,17 @@
                         <div class="category-wrap-2 ftco-animate img align-self-stretch d-flex"
                             style="background-image: url({% static 'images/watch-inside.jpg' %});">
                             <div class="text text-center"
-                                style="display: flex; justify-content: center; align-items: center; backdrop-filter: blur(3px);">
+                                style="display: flex; justify-content: center; align-items: center; backdrop-filter: blur(6px);">
                                 <div style="padding: 10px 0; text-align: center; width: 100%;" class="quote-container">
                                     <!-- <h2>Quote</h2> -->
                                     <img style="margin: 0 0 10px 0;" width="50" height="50"
                                         src="https://img.icons8.com/ios/50/FFFFFF/quote--v1.png" alt="quote--v1" />
-                                    <p class="pharagraph-quote" style="">
+                                    <p class="pharagraph-quote" style="color: #FFA62F;">
                                         Don’t watch the clock, do what it does.
                                         <br>
                                         Keep going.
                                     </p>
-                                    <p><a href="#" class="btn btn-primary">Shop now</a></p>
+                                    <p><a href="{% url 'shop' %}" class="btn btn-primary">Shop now</a></p>
                                 </div>
                             </div>
                         </div>
@@ -153,31 +142,26 @@
             {% for product in products %}
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
-                    <a href="{% url 'product-details' product.id %}" class="img-prod"><img class="img-fluid"
-                            src="{{ product.photo.url }}" alt="Colorlib Template">
+                    <a href="{% url 'product-details' product.id %}" class="img-prod">
+                        <img style="height: 390px; object-fit: cover;" class="img-fluid" src="{{ product.photo.url }}"
+                            alt="Colorlib Template">
                         <div class="overlay"></div>
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="{% url 'product-details' product.id %}">{{ product.name }}</a></h3>
+                        <h3 style="height: 50px;"><a href="{% url 'product-details' product.id %}">
+                                {{ product.name }}</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price">
+                                <p style="" class="price">
                                     <span class="price-sale">{{ product.price|floatformat:"0"|intcomma }} VNĐ</span>
                                 </p>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">
                             <div class="m-auto d-flex">
-                                <a href="#"
-                                    class="add-to-cart d-flex justify-content-center align-items-center text-center">
-                                    <span><i class="ion-ios-menu"></i></span>
-                                </a>
                                 <a href="{% url 'cart' %}"
                                     class="buy-now d-flex justify-content-center align-items-center mx-1">
                                     <span><i class="ion-ios-cart"></i></span>
-                                </a>
-                                <a href="#" class="heart d-flex justify-content-center align-items-center ">
-                                    <span><i class="ion-ios-heart"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -231,217 +215,61 @@
     <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
-                <span class="subheading">Testimony</span>
-                <h2 class="mb-4">Our satisfied customer says</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live
-                    the blind texts. Separated they live in</p>
+                <span class="subheading">Anti AppleWatch Forever</span>
+                <h2 class="mb-4">Our customer reaction</h2>
             </div>
         </div>
         <div class="row ftco-animate">
             <div class="col-md-12">
-                <div class="carousel-testimony owl-carousel">
+                <div class="owl-carousel owl-theme">
+                    {% for customer in customer %}
                     <div class="item">
                         <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
+                            <div class="user-img mb-5" style="background-image: url({{ customer.image.url }})">
                                 <span class="quote d-flex align-items-center justify-content-center">
                                     <i class="icon-quote-left"></i>
                                 </span>
                             </div>
                             <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Đồng hồ rất đẹp, chất lượng tốt và giao
-                                    hàng nhanh chóng. Rất
-                                    hài
-                                    lòng với dịch vụ của shop!"</p>
-                                <p class="name">Nguyễn Văn Minh</p>
+                                <p style="height:110px; font-family: Roboto;" class="mb-5 pl-4 line">
+                                    {{ customer.description }}
+                                </p>
+                                <p class="name">{{ customer.title }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_2.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"The watch is beautiful, of good quality,
-                                    and delivered
-                                    quickly. Very
-                                    satisfied with the shop's service!"</p>
-                                <p class="name">John Smith</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_3.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Mình đã mua đồng hồ tại đây và rất ấn
-                                    tượng với thiết kế sang
-                                    trọng
-                                    và bền bỉ. Shop hỗ trợ rất nhiệt tình."</p>
-                                <p class="name">Trần Thị Mai</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"I bought a watch here and was very
-                                    impressed with the
-                                    luxurious and
-                                    durable design. The shop's support is very enthusiastic."</p>
-                                <p class="name">Emily Johnson</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Giá cả hợp lý, đồng hồ chính hãng và
-                                    dịch vụ sau bán hàng
-                                    tuyệt vời.
-                                    Mình sẽ giới thiệu cho bạn bè!"</p>
-                                <p class="name">Lê Thanh Huyền</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Reasonable prices, genuine watches, and
-                                    excellent after-sales
-                                    service. I will recommend it to my friends!"</p>
-                                <p class="name">Michael Brown</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Đồng hồ đẹp, chất liệu cao cấp và rất
-                                    đáng tiền. Giao hàng
-                                    nhanh và
-                                    đóng gói cẩn thận. Rất đáng để mua!"</p>
-                                <p class="name">Phạm Minh Khoa</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Beautiful watch, high-quality materials,
-                                    and very worth the
-                                    money.
-                                    Fast delivery and careful packaging. Highly recommended!"</p>
-                                <p class="name">Sarah Davis</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"Mình rất thích mẫu đồng hồ mới mua, nhìn
-                                    rất sang và tinh tế.
-                                    Nhân
-                                    viên tư vấn rất nhiệt tình và thân thiện."</p>
-                                <p class="name">Vũ Thị Lan</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="testimony-wrap p-4 pb-5">
-                            <div class="user-img mb-5"
-                                style="background-image: url({% static 'images/person_1.jpg' %})">
-                                <span class="quote d-flex align-items-center justify-content-center">
-                                    <i class="icon-quote-left"></i>
-                                </span>
-                            </div>
-                            <div class="text text-center">
-                                <p style="height:110px" class="mb-5 pl-4 line">"I really like the new watch I bought; it
-                                    looks very classy
-                                    and
-                                    sophisticated. The staff was very enthusiastic and friendly."</p>
-                                <p class="name">David Wilson</p>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<hr>
-
 <section class="ftco-section ftco-partner">
-    <!-- <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-sm ftco-animate">
                 <a href="#" class="partner"><img src="{% static 'images/partner.png' %}" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a href="#" class="partner"><img src="{% static 'images/partner2.png' %}" class="img-fluid"
+                <a href="#" class="partner"><img src="{% static 'images/partner.png' %}" class="img-fluid"
                         alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a style="width: 150px; height: 100px;" href="#" class="partner"><img
-                        src="{% static 'images/partner3.png' %}" class="img-fluid" alt="Colorlib Template"></a>
+                <a href="#" class="partner"><img src="{% static 'images/partner.png' %}" class="img-fluid"
+                        alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a style="width: 170px; height: 100px;margin: -10px 0 0 -40px !important" href="#" class="partner"><img
-                        src="{% static 'images/partner4.png' %}" class="img-fluid" alt="Colorlib Template"></a>
+                <a href="#" class="partner"><img src="{% static 'images/partner.png' %}" class="img-fluid"
+                        alt="Colorlib Template"></a>
             </div>
             <div class="col-sm ftco-animate">
-                <a style="width: 185px; height: 145px;" href="#" class="partner"><img
-                        src="{% static 'images/partner5.png' %}" class="img-fluid" alt="Colorlib Template"></a>
+                <a href="#" class="partner"><img src="{% static 'images/partner.png' %}" class="img-fluid"
+                        alt="Colorlib Template"></a>
             </div>
         </div>
-    </div> -->
+    </div>
 </section>
 
 <section class="ftco-section ftco-no-pt ftco-no-pb py-5 bg-light">
@@ -454,8 +282,8 @@
             <div class="col-md-6 d-flex align-items-center">
                 <form class="subscribe-form" method=POST>
                     <div class="form-group d-flex">
-                        {% csrf_token %}
                         {{ forms.email }}
+                        {% csrf_token %}
                         <input type="submit" value="Subscribe" class="submit px-3">
                     </div>
                 </form>
@@ -463,4 +291,31 @@
         </div>
     </div>
 </section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            dots: false,  // Disable the dots
+            autoplay: true,  // Enable auto play
+            autoplayTimeout: 3000,  // Set time between transitions (3 seconds)
+
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 3
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}

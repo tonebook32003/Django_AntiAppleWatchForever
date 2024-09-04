@@ -313,7 +313,7 @@ AOS.init({
 
 
     function makeTimer() {
-        var endTime = new Date("June 5, 2024 00:00:00 GMT+07:00");
+        var endTime = new Date("Septemper 30, 2024 08:00:00 GMT+07:00");
         endTime = Date.parse(endTime) / 1000;
 
         var now = new Date();
@@ -349,4 +349,6 @@ AOS.init({
     }, 1000);
 
 })(jQuery);
+
+// ADd to cart functionality
 

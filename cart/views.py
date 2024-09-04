@@ -8,3 +8,4 @@ def cart_page(request):
 
 def checkout(request):
     return render(request, 'cart/checkout.html')
+

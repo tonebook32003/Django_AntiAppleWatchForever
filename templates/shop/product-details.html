@@ -3,6 +3,63 @@
 {% load humanize %}
 
 {% block content %}
+<style>
+    /* CSS for product details page */
+    .product-image {
+        position: relative;
+    }
+
+    #main-image {
+        width: 100%;
+        height: auto;
+        transition: opacity 0.3s ease;
+        /* Add transition for smooth effect */
+    }
+
+    .thumbnails {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .img-thumbnail {
+        cursor: pointer;
+        margin: 0 5px;
+        width: 100px;
+        /* Định kích thước của thumbnail */
+        height: 100px;
+        /* Định kích thước của thumbnail */
+        object-fit: cover;
+        /* Đảm bảo hình ảnh không bị méo hoặc căng */
+    }
+
+
+    /* Overlay effect for main image */
+    #main-image::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Black overlay with 50% opacity */
+        z-index: 1;
+        opacity: 0;
+        /* Initially hidden */
+        transition: opacity 0.3s ease;
+        /* Fade effect */
+    }
+
+    /* Show overlay when hovering over main image */
+    #main-image:hover::after {
+        opacity: 1;
+        /* Show overlay on hover */
+    }
+</style>
+
+</style>
 <div class="hero-wrap hero-bread" style="background-image: url({% static 'images/bg_1.jpg' %});">
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -21,16 +78,26 @@
         </div>
     </div>
 </div>
-
+<hr>
 <section class="ftco-section">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 mb-5 ftco-animate">
-                <a href="{{ product.photo.url }}" class="image-popup"><img src="{{ product.photo.url }}"
-                        class="img-fluid" alt="Colorlib Template"></a>
+            <div class="col-lg-6 mb-5 ftco-animate product-image">
+                <a href="{{ product.photo.url }}" class="image-popup">
+                    <img id="main-image" src="{{ product.photo.url }}" class="img-fluid" alt="Colorlib Template">
+                </a>
+                <div class="thumbnails mt-3 d-flex">
+                    {% for thumbnail in product.thumbnails.all %}
+                    <a href="{{ thumbnail.image.url }}" class="thumbnail-link">
+                        <img src="{{ thumbnail.image.url }}" class="img-thumbnail mr-2" alt="Thumbnail Image"
+                            style="width: 100px; height: 100px; object-fit: cover">
+                    </a>
+                    {% endfor %}
+                </div>
             </div>
             <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-                <h3>{{ product.name }}</h3>
+                <h3 class="product-name" style="width: 700px; font-weight: bold;">{{ product.name }}</h3>
+                <!-- <p class="product-id">{{ product.id }}</p> -->
                 <div class="rating d-flex">
                     <p class="text-left mr-4">
                         <a href="#" class="mr-2">5.0</a>
@@ -41,18 +108,21 @@
                         <a href="#"><span class="ion-ios-star-outline"></span></a>
                     </p>
                     <p class="text-left mr-4">
-                        <a href="#" class="mr-2" style="color: #000;">100 <span style="color: #bbb;">Rating</span></a>
+                        <a href="#" class="mr-2" style="color: #000;">Inventory:
+                            <span style="color: #000;"> {{ product.inventory }} products available
+                            </span>
+                        </a>
                     </p>
-                    <p class="text-left">
+                    <!-- <p class="text-left">
                         <a href="#" class="mr-2" style="color: #000;">500 <span style="color: #bbb;">Sold</span></a>
-                    </p>
+                    </p> -->
                 </div>
-                <p class="price"><span>{{ product.price|floatformat:"0"|intcomma }} VNĐ</span></p>
+                <p class="product-price"><span>{{ product.price|floatformat:"0"|intcomma }} VNĐ</span></p>
                 <p>{{ product.details | safe }}</p>
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <div class="form-group d-flex">
-                            <div class="select-wrap">
+                            <!-- <div class="select-wrap">
                                 <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                 <select name="" id="" class="form-control">
                                     <option value="">Small</option>
@@ -60,7 +130,7 @@
                                     <option value="">Large</option>
                                     <option value="">Extra Large</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="w-100"></div>
@@ -70,8 +140,8 @@
                                 <i class="ion-ios-remove"></i>
                             </button>
                         </span>
-                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1"
-                            min="1" max="100">
+                        <input type="number" id="product-quantity" name="quantity" class="form-control input-number"
+                            value="1" min="1" max="100">
                         <span class="input-group-btn ml-2">
                             <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
                                 <i class="ion-ios-add"></i>
@@ -83,12 +153,27 @@
                         <p style="color: #000;">600 kg available</p>
                     </div> -->
                 </div>
-                <p><a href="{% url 'cart' %}" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+                <div class="products-details-button" style="display: flex;margin: 40px 0 0 0;">
+                    <p style="margin: 0 20px 0 0;">
+                        <a href="{% url 'cart' %}" class="btn btn-black py-3 px-5 btn-product-details">
+                            Buy Now
+                        </a>
+                    </p>
+                    <p>
+                        <a id="add-to-cart-btn" href="#" class="btn btn-black py-3 px-5 btn-product-details">
+                            Add to Cart
+                            <img width="20" height="20"
+                                src="https://img.icons8.com/ios-glyphs/30/FFFFFF/shopping-cart--v1.png"
+                                alt="shopping-cart--v1" />
+                        </a>
+                    </p>
+
+                </div>
             </div>
         </div>
     </div>
 </section>
-
+<hr>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center mb-3 pb-3">
@@ -104,17 +189,23 @@
             {% for rel_product in related_products %}
             <div class="col-md-6 col-lg-3 ftco-animate">
                 <div class="product">
-                    <a href="#" class="img-prod"><img class="img-fluid" src="{{ rel_product.photo.url }}"
-                            alt="Colorlib Template">
-                        <span class="status">30%</span>
+                    <a href="{% url 'product-details' product.id %}" class="img-prod">
+                        <img class="img-fluid" src="{{ rel_product.photo.url }}" alt="Colorlib Template">
+                        <!-- <span class="status">30%</span> -->
                         <div class="overlay"></div>
                     </a>
                     <div class="text py-3 pb-4 px-3 text-center">
-                        <h3><a href="#">{{ rel_product.name }}</a></h3>
+                        <h3 style="height: 60px;"><a href="#">{{ rel_product.name }}</a></h3>
                         <div class="d-flex">
                             <div class="pricing">
-                                <p class="price"><span class="mr-2 price-dc">${{ rel_product.price }}</span><span
-                                        class="price-sale">${{ rel_product.price }}</span></p>
+                                <p class="price">
+                                    <!-- <span class="mr-2 price-dc">
+                                        {{ rel_product.price|floatformat:"0"|intcomma }}
+                                    </span> -->
+                                    <span class="price-sale">
+                                        {{rel_product.price|floatformat:"0"|intcomma }} VNĐ
+                                    </span>
+                                </p>
                             </div>
                         </div>
                         <div class="bottom-area d-flex px-3">
@@ -157,40 +248,41 @@
         </div>
     </div>
 </section>
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
 
         var quantitiy = 0;
         $('.quantity-right-plus').click(function (e) {
 
-            // Stop acting like a button
             e.preventDefault();
-            // Get the field name
             var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
             $('#quantity').val(quantity + 1);
-
-
-            // Increment
-
         });
 
         $('.quantity-left-minus').click(function (e) {
-            // Stop acting like a button
             e.preventDefault();
-            // Get the field name
             var quantity = parseInt($('#quantity').val());
-
-            // If is not undefined
-
-            // Increment
             if (quantity > 0) {
                 $('#quantity').val(quantity - 1);
             }
         });
 
     });
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('input[type=file]').forEach(function (input) {
+            input.setAttribute('multiple', 'multiple');
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        var thumbnails = document.querySelectorAll('.img-thumbnail');
+        var mainImage = document.getElementById('main-image');
+
+        thumbnails.forEach(function (thumbnail) {
+            thumbnail.addEventListener('mouseover', function () {
+                mainImage.src = this.src; // Change main image src to thumbnail src
+            });
+        });
+    });
+
 </script>
 {% endblock %}

@@ -1,6 +1,11 @@
 from django.shortcuts import render
+from Customer.models import Customer
+from .models import OurTeam
 
 
-# Create your views here.
 def about_page(request):
-    return render(request, 'about/about.html')
+    ourteam = OurTeam.objects.all()
+    context = {
+        "ourteam": ourteam,
+    }
+    return render(request, "about/about.html", context)

@@ -4,7 +4,6 @@ from .models import Banner
 
 # Create your views here.
 def Product_Banner(request):
-    banner = Banner.objects.all()
-    context = {"banner": banner}
+    get_banner = Banner.objects.all()
 
-    return render(request, "shop/shop.html", context)
+    return render(request, "home.html", get_banner)
